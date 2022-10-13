@@ -14,14 +14,22 @@
         
         $password = sha1($_POST["password"]);
         
-        $register = "INSERT INTO usuario(name,old_year,addres,email,password)VALUES('$name',"
-                . "'$old_year','$addres','$email','$password')";
+        $consulta = "SELECT * FROM user WHERE email = '$email'";
+        $res = $mysql->query($consulta);
+        $num = $res->num_rows;
         
-        $resultado = $mysql->query($register);
+        if($num==0){
+            $register = "INSERT INTO user(name,old_year,addres,email,password)VALUES('$name',"
+            . "'$old_year','$addres','$email','$password')";
         
-        if($resultado){
-            echo 'true';
-            mysqli_close($mysql);
+            $resultado = $mysql->query($register);
+        
+            if($resultado){
+                echo 'true';
+                mysqli_close($mysql); 
+            }
+        }else{
+            echo 'false';
         }
     }else{
         echo 'esperando...';

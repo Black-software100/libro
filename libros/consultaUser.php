@@ -10,7 +10,7 @@
         // informacion de la contraseña
         $password = sha1($_GET["password"]);
         
-       $consulta = "SELECT name,addres FROM usuario WHERE email = '$email' AND "
+       $consulta = "SELECT name,addres FROM user WHERE email = '$email' AND "
                . "password = '$password'";
        
        $resultado = $mysql->query($consulta);
@@ -24,7 +24,7 @@
            mysqli_close($mysql);
            
        }else{
-           echo "false";
+           echo false;
        }
         
     }else{

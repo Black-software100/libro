@@ -44,7 +44,7 @@
         
         $insert = "INSERT INTO Book(img,name,price)values (?,?,?)";
         
-        $stm=$mysql->prepare($insert);
+        $stm = $mysql->prepare($insert);
         $stm->bind_param('ssi',$bytesArchivo,$name,$price);
         
         if($stm->execute()){
