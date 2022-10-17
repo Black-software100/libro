@@ -21,11 +21,10 @@ import com.android.volley.toolbox.Volley;
 import com.example.biblioteca.R;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 
-public class sign_up extends AppCompatActivity {
+public class Sign_up extends AppCompatActivity {
     EditText name,old_year,email,addres,password,password2;
     Button btnSign_up,btnsing_in;
     ProgressDialog dialog;
@@ -46,7 +45,7 @@ public class sign_up extends AppCompatActivity {
         btnsing_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(sign_up.this,Sign_in.class);
+                Intent intent = new Intent(Sign_up.this,Sign_in.class);
                 startActivity(intent);
             }
         });
@@ -77,19 +76,19 @@ public class sign_up extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response.equalsIgnoreCase("true")) {
-                            Toast.makeText(sign_up.this, "el usuario registrado", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Sign_up.this, "el usuario registrado", Toast.LENGTH_LONG).show();
                             dialog.hide();
-                            Intent intent = new Intent(sign_up.this, Sign_in.class);
+                            Intent intent = new Intent(Sign_up.this, Sign_in.class);
                             startActivity(intent);
                         } else if (response.equalsIgnoreCase("false")) {
-                            Toast.makeText(sign_up.this, "El usuario ya existe", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Sign_up.this, "El usuario ya existe", Toast.LENGTH_LONG).show();
                             dialog.hide();
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(sign_up.this, "No se pudo conecatra al servidor", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Sign_up.this, "No se pudo conecatra al servidor", Toast.LENGTH_SHORT).show();
                         dialog.hide();
                     }
                 }){
@@ -106,7 +105,7 @@ public class sign_up extends AppCompatActivity {
                         return param;
                     }
                 };
-                RequestQueue requestQueue = Volley.newRequestQueue(sign_up.this);
+                RequestQueue requestQueue = Volley.newRequestQueue(Sign_up.this);
                 requestQueue.add(request);
             }else{
                 Toast.makeText(this,"La contraseña no coniciden",Toast.LENGTH_LONG).show();

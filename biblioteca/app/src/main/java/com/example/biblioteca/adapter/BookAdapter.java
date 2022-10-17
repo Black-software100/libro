@@ -14,8 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biblioteca.R;
 import com.example.biblioteca.entidades.Book;
-import com.example.biblioteca.interfaces.infoBook;
-import com.example.biblioteca.interfaces.sign_up;
+import com.example.biblioteca.interfaces.InfoBook;
 
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
                 public void onClick(View view) {
                     int book = listaBook.get(position).getId();
                     String post = String.valueOf(book);
-                    Intent intent = new Intent(context, infoBook.class);
+                    Intent intent = new Intent(context, InfoBook.class);
                     intent.putExtra("id",post);
                     context.startActivity(intent);
                 }

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +18,20 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Out"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".interfaces.Bloqueo"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".interfaces.Alquilar"
             android:exported="false">
             <meta-data
@@ -24,14 +39,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".interfaces.infoBook"
+            android:name=".interfaces.InfoBook"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".interfaces.sign_up"
+            android:name=".interfaces.Sign_up"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -45,7 +60,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".interfaces.index"
+            android:name=".interfaces.Index"
             android:exported="false"
             android:label="@string/title_activity_index">
             <meta-data

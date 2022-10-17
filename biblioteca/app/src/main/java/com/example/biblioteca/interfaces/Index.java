@@ -13,7 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.biblioteca.databinding.ActivityIndexBinding;
 
-public class index extends AppCompatActivity {
+public class Index extends AppCompatActivity {
 
     private ActivityIndexBinding binding;
 

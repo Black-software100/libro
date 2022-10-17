@@ -53,14 +53,14 @@ public class Alquilar extends AppCompatActivity {
             dialog = new ProgressDialog(this);
             dialog.setMessage("Cargando...");
             dialog.show();
-            String url = "http://192.168.1.8/libros/http://192.168.1.8/libros/compra.php";
+            String url = "http://192.168.1.8/libros/compra.php";
             StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>(){
                 @Override
                 public void onResponse(String response) {
                     if (response.equalsIgnoreCase("true")) {
                         Toast.makeText(Alquilar.this, "libro alquilado", Toast.LENGTH_LONG).show();
                         dialog.hide();
-                        Intent intent = new Intent(Alquilar.this, index.class);
+                        Intent intent = new Intent(Alquilar.this, Index.class);
                         startActivity(intent);
                     } else if (response.equalsIgnoreCase("No se pudo hacer la modificacion")) {
                         Toast.makeText(Alquilar.this, "error al alquilar", Toast.LENGTH_LONG).show();
