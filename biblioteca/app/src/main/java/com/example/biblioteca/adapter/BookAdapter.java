@@ -39,8 +39,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BookHolder holder, int position) {
+
         holder.imageView.setImageBitmap(listaBook.get(position).getImg());
+
         holder.nameView.setText(listaBook.get(position).getName());
+
         holder.PriceView.setText(listaBook.get(position).getPrice().toString());
         try {
             holder.llBook.setOnClickListener(new View.OnClickListener() {

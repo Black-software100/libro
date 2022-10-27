@@ -106,7 +106,7 @@ public class Home extends Fragment implements Response.Listener<JSONObject>,Resp
         dialog.setMessage("Consultando Imagenes");
         dialog.show();
 
-        String url = "http://192.168.1.8/libros/libros.php";
+        String url = "http://192.168.1.8/libros/movil/libros.php";
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         requestQueue.add(jsonObjectRequest);
     }

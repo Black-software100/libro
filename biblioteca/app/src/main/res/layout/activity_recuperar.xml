@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".interfaces.Sign_up">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,39 +16,35 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Name_Error_Sign_up"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
-                android:hint="@string/ingresar_tu_nombre_completo"
-                app:boxBackgroundMode="outline">
+                app:boxBackgroundMode="outline"
+                >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/name_sign_up"
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:textColor="#000000" />
+                    android:inputType="text"
+                    android:textColor="#000000"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Doc_Error_Sign_up"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
-                android:hint="@string/ingresar_tu_n_mero_de_documento"
+                android:hint="@string/ingresar_respuesta"
                 app:boxBackgroundMode="outline">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/doc_sign_up"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"/>
@@ -55,61 +52,36 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Old_year_Error_Sign_up"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
-                android:hint="@string/ingresa_tu_edad"
-                app:boxBackgroundMode="outline">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/old_year_sign_up"
-                    android:inputType="number"
+                app:boxBackgroundMode="outline"
+                >
+                <AutoCompleteTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:textColor="#000000"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Email_Error_Sign_up"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
-                android:hint="@string/ingresa_tu_correo"
+                android:hint="@string/ingresar_respuesta"
                 app:boxBackgroundMode="outline"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/email_sing_up"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:textColor="#000000"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Addres_Error_Sign_up"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="50dp"
-                android:hint="@string/ingresa_tu_direcci_n"
-                app:boxBackgroundMode="outline"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="text"
                     android:id="@+id/addres_sing_up"
-                    android:inputType="textPostalAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"/>
@@ -117,74 +89,51 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Password_Error_Sign_up"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
-
                 app:boxBackgroundMode="outline"
-                app:endIconMode="password_toggle"
-                app:helperTextEnabled="true"
-
                 >
+                <AutoCompleteTextView
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password_sign_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:hint="@string/ingresa_la_contrase_a"
-                    android:textColor="#000000"
-                    />
+                    android:inputType="text"
+                    android:textColor="#000000"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Password2_Error_Sign_up"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="50dp"
-
-                app:boxBackgroundMode="outline"
-                app:endIconMode="password_toggle"
-                >
+                app:boxBackgroundMode="outline">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password2_sign_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:hint="@string/confirmar_contrase_a"
+                    android:inputType="text"
+                    android:hint="@string/ingresar_respuesta"
                     android:textColor="#000000"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button
+                style="?attr/materialButtonOutlinedStyle"
                 android:id="@+id/btnSign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:text="@string/registrarse"
-                 />
-
-            <Button
-                android:id="@+id/btnSign_in"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="25dp"
-                android:gravity="center"
-                android:text="@string/ya_tienes_cuenta"
-                 />
+                android:text="Guardar respuesta"
+                />
 
         </LinearLayout>
 
