@@ -100,7 +100,10 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
             }
         });
         // -----------------------------FIN JVES1.0 ------------------------------------------------
-        btnSign_up.setOnClickListener(new View.OnClickListener() {
+
+
+        // -----------------------------Inicio JVES1.0 ---------------------------------------------
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cargarwebservice();
