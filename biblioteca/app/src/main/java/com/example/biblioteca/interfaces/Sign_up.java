@@ -50,42 +50,44 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
 
     RequestQueue requestQueue;
     // -------------------------------FIN JVES1.0  -------------------------------------------------
+
+    // -------------------------------------- Inicio JVFN1.0 ----------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        Name_error = findViewById(R.id.Name_Error_Sign_up);
+        nameError = findViewById(R.id.Name_Error_Sign_up);
 
-        Doc_error = findViewById(R.id.Doc_Error_Sign_up);
+        documentError = findViewById(R.id.Doc_Error_Sign_up);
 
-        Old_error = findViewById(R.id.Old_year_Error_Sign_up);
+        oldError = findViewById(R.id.Old_year_Error_Sign_up);
 
-        Email_error = findViewById(R.id.Email_Error_Sign_up);
+        emailError = findViewById(R.id.Email_Error_Sign_up);
 
-        Adress_error = findViewById(R.id.Addres_Error_Sign_up);
+        adressError = findViewById(R.id.Addres_Error_Sign_up);
 
-        Password_error = findViewById(R.id.Password_Error_Sign_up);
+        passwordError = findViewById(R.id.Password_Error_Sign_up);
 
-        Password2_error = findViewById(R.id.Password2_Error_Sign_up);
+        password2Error = findViewById(R.id.Password2_Error_Sign_up);
 
         name = findViewById(R.id.name_sign_up);
 
         email = findViewById(R.id.email_sing_up);
 
-        documento = findViewById(R.id.doc_sign_up);
+        document = findViewById(R.id.doc_sign_up);
 
         addres = findViewById(R.id.addres_sing_up);
 
-        old_year = findViewById(R.id.old_year_sign_up);
+        oldYear = findViewById(R.id.old_year_sign_up);
 
         password = findViewById(R.id.password_sign_up);
 
         password2 = findViewById(R.id.password2_sign_up);
 
-        btnSign_up = findViewById(R.id.btnSign_up);
+        btnSignUp = findViewById(R.id.btnSign_up);
 
-        btnsing_in = findViewById(R.id.btnSign_in);
+        btnsingIn = findViewById(R.id.btnSign_in);
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -103,10 +105,8 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
                 cargarwebservice();
             }
         });
-
-
     }
-
+    //------------------------- FIN JVFN1.0 --------------------------------------------------------
     public void cargarwebservice() {
         String Name = name.getText().toString().trim();
         //
