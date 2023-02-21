@@ -95,8 +95,7 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
         btnsingIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Sign_up.this,Sign_in.class);
-                startActivity(intent);
+                cargarwebservice();
             }
         });
         // -----------------------------FIN JVES1.0 ------------------------------------------------
@@ -106,107 +105,113 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cargarwebservice();
+
+                Intent intent = new Intent(Sign_up.this,Sign_in.class);
+                startActivity(intent);
             }
         });
     }
     //------------------------- FIN JVFN1.0 --------------------------------------------------------
+
+    // -------------------------- Inicio JVFN1.0 ---------------------------------------------------
     public void cargarwebservice() {
-        String Name = name.getText().toString().trim();
+        String nameString = name.getText().toString().trim();
         //
-        String Old_year = old_year.getText().toString();
+        String oldYearString = oldYear.getText().toString();
         //
-        String Email = email.getText().toString().trim().toLowerCase();
+        String emailString = email.getText().toString().trim().toLowerCase();
         //
-        String Addres = addres.getText().toString().trim();
+        String addresString = addres.getText().toString().trim();
         //
-        String Password = password.getText().toString().trim();
+        String passwordString = password.getText().toString().trim();
         //
-        String Password2 = password2.getText().toString().trim();
+        String password2String = password2.getText().toString().trim();
         //
-        String Documento = documento.getText().toString().trim();
+        String documentoString = document.getText().toString().trim();
 
-        Name_error.setErrorEnabled(false);
+        nameError.setErrorEnabled(false);
 
-        Old_error.setErrorEnabled(false);
+        oldError.setErrorEnabled(false);
 
-        Doc_error.setErrorEnabled(false);
+        documentError.setErrorEnabled(false);
 
-        Adress_error.setErrorEnabled(false);
+        adressError.setErrorEnabled(false);
 
-        Email_error.setErrorEnabled(false);
+        emailError.setErrorEnabled(false);
 
-        Password_error.setErrorEnabled(false);
+        passwordError.setErrorEnabled(false);
 
-        Password2_error.setErrorEnabled(false);
+        password2Error.setErrorEnabled(false);
 
-        if(Name.isEmpty()){
+        if(nameString.isEmpty()){
+            nameError.setError(Strings.NAME_ERROR);
+            throw  null;
 
-            Name_error.setError(Strings.NAME_ERROR);
+        }if(oldYearString.isEmpty()){
+            oldError.setError(Strings.OLD_ERROR);
+            throw  null;
 
-        }else if(Old_year.isEmpty()){
+        }if(documentoString.isEmpty()){
+            documentError.setError(Strings.DOC_ERROR);
+            throw  null;
 
-            Old_error.setError(Strings.OLD_ERROR);
+        }if(emailString.isEmpty()){
+            emailError.setError(Strings.EMAIL_ERROR);
+            throw  null;
 
-        }else if(Documento.isEmpty()){
+        }if(addresString.isEmpty()){
+            adressError.setError(Strings.ADRESS_ERROR);
+            throw  null;
 
-            Doc_error.setError(Strings.DOC_ERROR);
+        }if(passwordString.isEmpty()){
+            passwordError.setError(Strings.PASSWORD_ERROR);
+            throw  null;
 
-        }else if(Email.isEmpty()){
-            Email_error.setError(Strings.EMAIL_ERROR);
+        }if(password2String.isEmpty()){
+            password2Error.setError(Strings.PASSWORD_ERROR);
+            throw  null;
 
+        }if(!PatternsCompat.EMAIL_ADDRESS.matcher(emailString).matches()){
+            emailError.setError(Strings.EMAIL_INALIDE);
+            throw  null;
 
-        }else if(Addres.isEmpty()){
-
-            Adress_error.setError(Strings.ADRESS_ERROR);
-
-        }else if(Password.isEmpty()){
-
-            Password_error.setError(Strings.PASSWORD_ERROR);
-
-        }else if(Password2.isEmpty()){
-
-            Password2_error.setError(Strings.PASSWORD_ERROR);
-
-        }else if(!PatternsCompat.EMAIL_ADDRESS.matcher(Email).matches()){
-
-            Email_error.setError(Strings.EMAIL_INALIDE);
-        }else if(!Patronnes.Passwordpatter.matcher(Password).matches()) {
-            Email_error.setError(Strings.PASSWORD_INVALIDE);
+        }if(!Patronnes.Passwordpatter.matcher(passwordString).matches()) {
+            emailError.setError(Strings.PASSWORD_INVALIDE);
+            throw  null;
         }
-        else{
 
-            if (Password.equals(Password2)) {
-
-                dialog = new ProgressDialog(this);
-
-                dialog.setMessage("Cargando...");
-
-                dialog.show();
-
-                final  String url = "http://192.168.1.8/libros/movil/register.php";
-
-                stringRequest = new StringRequest(Request.Method.POST,url,this,this){
-                    @Nullable
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String,String> param = new HashMap<>();
-                        param.put("name",Name);
-                        param.put("old_year",Old_year);
-                        param.put("addres",Addres);
-                        param.put("email",Email);
-                        param.put("password",Password);
-                        return param;
-                    }
-                };
-                //le damos el método para buscar
-                requestQueue.add(stringRequest);
-            }else {
-                Password2_error.setError(Strings.PASSWORD_ERROR);
-            }
+        if (!passwordString.equals(password2String)) {
+            password2Error.setError(Strings.PASSWORD_ERROR);
+            throw  null;
         }
+
+
+            dialog = new ProgressDialog(this);
+
+            dialog.setMessage("Cargando...");
+
+            dialog.show();
+
+            final  String url = "http://192.168.1.8/libros/movil/register.php";
+
+            stringRequest = new StringRequest(Request.Method.POST,url,this,this){
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> param = new HashMap<>();
+                    param.put("name",nameString);
+                    param.put("old_year",oldYearString);
+                    param.put("addres",addresString);
+                    param.put("email",emailString);
+                    param.put("password",passwordString);
+                    return param;
+                }
+            };
+            //le damos el método para buscar
+            requestQueue.add(stringRequest);
+
     }
-
+    // --------------------------------------- FIN JVFN1.0 -----------------------------------------
     @Override
     public void onResponse(String response) {
         if (response.equalsIgnoreCase("true")) {
