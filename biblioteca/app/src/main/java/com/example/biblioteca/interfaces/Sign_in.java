@@ -1,5 +1,6 @@
 package com.example.biblioteca.interfaces;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -10,11 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.biblioteca.R;
 import com.example.biblioteca.dato.Login;
@@ -24,25 +29,19 @@ import com.example.biblioteca.entidades.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.EOFException;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Sign_in extends AppCompatActivity implements Response.Listener<JSONObject>, Response.ErrorListener{
-    //Contante de dialogo
+
      ProgressDialog dialog;
-
-    //Botones para volver y registrarse
-      Button btnSign_in, btnSign_up;
-
-    // Contante  de email y contraseña
-     EditText EdtEmail, Edtpass;
-
-    //Contante http
+     Button btnSign_in, btnSign_up;
+     EditText edtEmail, edtpass;
      RequestQueue requestQueue;
-
      String name,id;
-
-    User user = null;
-
-    //Método para enviar un array
-    JsonObjectRequest jsonObjectRequest;
+     User user = null;
+    JsonRequest stringRequest ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +49,10 @@ public class Sign_in extends AppCompatActivity implements Response.Listener<JSON
         setContentView(R.layout.activity_sign_in);
 
         //obtiene la información del la layout
-        EdtEmail = findViewById(R.id.email_Sing_in);
+        edtEmail = findViewById(R.id.email_Sing_in);
 
        //obtiene la información del la layout
-        Edtpass = findViewById(R.id.pass_Sign_in);
+        edtpass = findViewById(R.id.pass_Sign_in);
 
         //le damos el contexto de la clase
         requestQueue = Volley.newRequestQueue(this);
@@ -68,8 +67,8 @@ public class Sign_in extends AppCompatActivity implements Response.Listener<JSON
         btnSign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CargarWebService();
-                }
+                try {CargarWebService();}catch (EOFException e){}
+            }
         });
 
         //botón al hacer click update
@@ -83,37 +82,38 @@ public class Sign_in extends AppCompatActivity implements Response.Listener<JSON
 
     }
 
-    private void CargarWebService() {
+    private void CargarWebService() throws EOFException {
       //
-      String  email = EdtEmail.getText().toString().trim() ;
+      String  email = edtEmail.getText().toString().trim() ;
       //
-      String password = Edtpass.getText().toString().trim();
+      String password = edtpass.getText().toString().trim();
       //
-      if(!email.isEmpty() && !password.isEmpty()){
-          //le damos el contexto de dialogo
-          dialog = new ProgressDialog(this);
-          //le damos la información a mostrar
-          dialog.setMessage("Consultando usuario");
-          //abrimos el dialogo
-          dialog.show();
-
-          try{
-              //inscribimos la URL de servidor
-              String url = "http://192.168.1.8/libros/consultaUser.php?email="+email+"&password="+password+"";
-              //le decimos el método a enviar
-              jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-              //le damos el método para buscar
-              requestQueue.add(jsonObjectRequest);
-
-          }catch (Exception e){
-              // Mostrar el error
-              e.toString();
-          }
-      }else{
-          // Mostrar un mensaje
+      if(email.isEmpty() && password.isEmpty()){
           Toast.makeText(this,"no dejar ningun espacio blanco",Toast.LENGTH_LONG).show();
-
+          throw  new EOFException();
       }
+      dialog = new ProgressDialog(this);
+
+      dialog.setMessage("Consultando usuario");
+
+      dialog.show();
+
+      final String url = "http://192.168.1.8/libros/";
+
+        stringRequest = new JsonObjectRequest(Request.Method.POST,url,null,this,this){
+
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> param = new HashMap<>();
+                param.put("name",email);
+                param.put("old_year",password);
+                return param;
+            }
+        };
+        //le damos el método para buscar
+        requestQueue.add(stringRequest);
+
 
     }
     @Override
@@ -146,9 +146,9 @@ public class Sign_in extends AppCompatActivity implements Response.Listener<JSON
 
             }
         }catch (Exception e) {
-            // mostramos el error
+
             e.toString();
-            //cerramos el dialogo
+
             dialog.hide();
         }
     }
@@ -174,8 +174,8 @@ public class Sign_in extends AppCompatActivity implements Response.Listener<JSON
        respuesta = login.ingresar(this,name,id);
 
         if(respuesta){
-            EdtEmail.setText("");
-            Edtpass.setText("");
+            edtEmail.setText("");
+            edtpass.setText("");
             dialog.hide();
             Intent intent = new Intent(Sign_in.this,Index.class);
             startActivity(intent);
