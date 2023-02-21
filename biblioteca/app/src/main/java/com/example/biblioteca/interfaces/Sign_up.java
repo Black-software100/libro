@@ -31,6 +31,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONObject;
 
+import java.io.EOFException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,14 +108,18 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cargarwebservice();
+                try {
+                    cargarwebservice();
+                }catch (EOFException e){
+                    e.toString();
+                }
             }
         });
     }
     //------------------------- FIN JVFN1.0 --------------------------------------------------------
 
     // -------------------------- Inicio JVFN1.0 ---------------------------------------------------
-    public void cargarwebservice() {
+    public void cargarwebservice() throws EOFException {
         String nameString = name.getText().toString().trim();
         //
         String oldYearString = oldYear.getText().toString();
@@ -145,44 +150,45 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
 
         if(nameString.isEmpty()){
             nameError.setError(Strings.NAME_ERROR);
-            throw  null;
+
+            throw new   EOFException();
 
         }if(oldYearString.isEmpty()){
             oldError.setError(Strings.OLD_ERROR);
-            throw  null;
+            throw  new   EOFException();
 
         }if(documentoString.isEmpty()){
             documentError.setError(Strings.DOC_ERROR);
-            throw  null;
+            throw  new   EOFException();
 
         }if(emailString.isEmpty()){
             emailError.setError(Strings.EMAIL_ERROR);
-            throw  null;
+            throw  new   EOFException();
 
         }if(addresString.isEmpty()){
             adressError.setError(Strings.ADRESS_ERROR);
-            throw  null;
+            throw  new   EOFException();
 
         }if(passwordString.isEmpty()){
             passwordError.setError(Strings.PASSWORD_ERROR);
-            throw  null;
+            throw  new   EOFException();
 
         }if(password2String.isEmpty()){
             password2Error.setError(Strings.PASSWORD_ERROR);
-            throw  null;
+            throw  new   EOFException();
 
         }if(!PatternsCompat.EMAIL_ADDRESS.matcher(emailString).matches()){
             emailError.setError(Strings.EMAIL_INALIDE);
-            throw  null;
+            throw  new   EOFException();
 
         }if(!Patronnes.Passwordpatter.matcher(passwordString).matches()) {
             emailError.setError(Strings.PASSWORD_INVALIDE);
-            throw  null;
+            throw  new   EOFException();
         }
 
         if (!passwordString.equals(password2String)) {
             password2Error.setError(Strings.PASSWORD_ERROR);
-            throw  null;
+            throw  new   EOFException();
         }
 
 
