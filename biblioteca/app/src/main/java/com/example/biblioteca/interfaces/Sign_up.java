@@ -91,6 +91,7 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
 
         requestQueue = Volley.newRequestQueue(this);
 
+        //--------------------------- Inicio JVES1.0 -----------------------------------------------
         btnsing_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +99,7 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
                 startActivity(intent);
             }
         });
-
+        // -----------------------------FIN JVES1.0 ------------------------------------------------
         btnSign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
