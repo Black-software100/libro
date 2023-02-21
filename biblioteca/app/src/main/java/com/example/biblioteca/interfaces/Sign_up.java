@@ -36,18 +36,20 @@ import java.util.Map;
 
 
 public class Sign_up extends AppCompatActivity  implements Response.Listener<String>, Response.ErrorListener{
-    EditText name,old_year,email,addres,password,password2, documento;
+    //------------------------- INICIO JVES1.0  -------------------------------------------------------------------
+    EditText name,oldYear,email,addres,password,password2, document;
 
-    TextInputLayout Name_error,Doc_error,Old_error,Adress_error,Email_error,Password_error,Password2_error;
+    TextInputLayout nameError,documentError,oldError,adressError,emailError,passwordError
+            ,password2Error;
 
-    Button btnSign_up,btnsing_in;
+    Button btnSignUp,btnsingIn;
 
     ProgressDialog dialog;
 
     StringRequest  stringRequest ;
 
     RequestQueue requestQueue;
-
+    // -------------------------------FIN JVES1.0  ------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
