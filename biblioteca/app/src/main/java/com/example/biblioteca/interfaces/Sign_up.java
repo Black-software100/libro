@@ -36,7 +36,7 @@ import java.util.Map;
 
 
 public class Sign_up extends AppCompatActivity  implements Response.Listener<String>, Response.ErrorListener{
-    //------------------------- INICIO JVES1.0  -------------------------------------------------------------------
+    //------------------------- INICIO JVES1.0  ----------------------------------------------------
     EditText name,oldYear,email,addres,password,password2, document;
 
     TextInputLayout nameError,documentError,oldError,adressError,emailError,passwordError
@@ -49,7 +49,7 @@ public class Sign_up extends AppCompatActivity  implements Response.Listener<Str
     StringRequest  stringRequest ;
 
     RequestQueue requestQueue;
-    // -------------------------------FIN JVES1.0  ------------------------------------------------------------
+    // -------------------------------FIN JVES1.0  -------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
